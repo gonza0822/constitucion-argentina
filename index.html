@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Constitución de la Nación Argentina</title>
+<meta name="description" content="Libro digital interactivo de la Constitución de la Nación Argentina, con efecto de pasado de página y buscador de artículos.">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a2540">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Constitución AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="loading-screen">
+  <div class="sun-emblem" aria-hidden="true">
+    <svg viewBox="0 0 200 200" width="90" height="90">
+      <circle cx="100" cy="100" r="38" fill="none" stroke="currentColor" stroke-width="4"/>
+      <circle cx="100" cy="100" r="26" fill="currentColor"/>
+      <g id="rays"></g>
+    </svg>
+  </div>
+  <p class="loading-text">Abriendo la Constitución&hellip;</p>
+</div>
+
+<div id="app" hidden>
+
+  <header id="toolbar">
+    <div class="toolbar-left">
+      <button id="btn-cover" class="tb-btn" title="Tapa / Índice" aria-label="Ir a la portada">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M4 4h16v16H4z" opacity="0"/><path fill="currentColor" d="M6 3h9a3 3 0 0 1 3 3v15l-6-3-6 3V6a3 3 0 0 1 3-3z"/></svg>
+        <span>Índice</span>
+      </button>
+      <button id="btn-prev" class="tb-btn icon-only" title="Página anterior" aria-label="Página anterior">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.5 5 8 12l7.5 7 1.4-1.4L10.8 12l6.1-5.6z"/></svg>
+      </button>
+      <button id="btn-next" class="tb-btn icon-only" title="Página siguiente" aria-label="Página siguiente">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="m8.5 5 7.5 7-7.5 7-1.4-1.4L13.2 12 7.1 6.4z"/></svg>
+      </button>
+      <span id="page-indicator">&nbsp;</span>
+    </div>
+
+    <div class="toolbar-title">
+      <span class="crest">☉</span> Constitución Argentina
+    </div>
+
+    <div class="toolbar-right">
+      <div id="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+        <input id="search-input" type="text" placeholder="Buscar artículo por palabra o tema&hellip;" autocomplete="off" aria-label="Buscar en la Constitución">
+        <button id="search-clear" title="Limpiar búsqueda" aria-label="Limpiar búsqueda">&times;</button>
+      </div>
+      <div id="search-results" hidden></div>
+    </div>
+  </header>
+
+  <main id="book-stage">
+    <div id="book"></div>
+  </main>
+
+  <footer id="hint-bar">
+    <span>Hacé clic en los bordes de la página, arrastrá una esquina, o usá las flechas del teclado para pasar de página.</span>
+  </footer>
+</div>
+
+<template id="tpl-article">
+  <article class="article-block">
+    <h3 class="article-number"></h3>
+    <p class="article-text"></p>
+  </article>
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script src="data/constitucion.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
